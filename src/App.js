@@ -1,30 +1,48 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect, useCallback} from "react";
 import './App.css';
+import Recipe from "./components/Recipe";
+import Search from "./components/Search";
 
 function App() {
 
-  const API_ID = "a6623b54";
-  const API_KEY = "0c2cb1931ef23530653b88020c54e432";
+  const API_ID = "ae60c9bf";
+  const API_KEY = "2e1cbecb447dd9cd38afe2196d64d4e3";
+
+  const [food, setFood] = useState("");
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("pizza");
 
 
-  const fetchFood = async () => {
+  const fetchFood = useCallback( async () => {
     try {
-      const response = await fetch(`https://api.edamam.com/search?&app_id=${API_ID}&app_key=${API_KEY}&q=pizza`);
+      const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}`);
       const data = await response.json();
-      console.log(data);
+      console.log(data.hits);
+      setFood(data.hits);
+      setSearch("");
     } catch(err) {
       console.log(err);
     }
-    
-  }
+  }, [query]);
 
   useEffect(() => {
     fetchFood();
-  }, [])
+  }, [fetchFood])
+
+  const updateQuery = () => {
+      setQuery(search);
+  }
+
+  const details = (foody) => {
+    const filtered = food.filter(item => item.recipe.label.toLowerCase() === foody.toLowerCase());
+    console.log(filtered);
+  }
 
   return (
     <div className="App">
-      <h1>Pozdrav react</h1>
+      <h1>RECIPE APP</h1>
+      <Search setSearch={setSearch} updateQuery={updateQuery}/>
+      <Recipe food={food} details={details}/>
     </div>
   );
 }
