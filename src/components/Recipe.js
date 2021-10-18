@@ -2,7 +2,7 @@ import React from 'react';
 
 const Recipe = ({ food, details }) => {
     return (
-        <div className="repice_container">
+        <div className="recipe_container">
             {!food ? <h1>There is no available recipe</h1> : food.map(item => (
                 <div className="recipe_item" key={item.recipe.calories}>
                     <h2 className="recipe_title">{item.recipe.label}</h2>

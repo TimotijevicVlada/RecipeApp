@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback} from "react";
 import './App.css';
 import Recipe from "./components/Recipe";
 import Search from "./components/Search";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import * as ReactBootStrap from "react-bootstrap";
 
 function App() {
 
@@ -11,6 +13,7 @@ function App() {
   const [food, setFood] = useState("");
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("pizza");
+  const [loading, setLoading] = useState(true);
 
 
   const fetchFood = useCallback( async () => {
@@ -20,6 +23,7 @@ function App() {
       console.log(data.hits);
       setFood(data.hits);
       setSearch("");
+      setLoading(false);
     } catch(err) {
       console.log(err);
     }
@@ -40,9 +44,11 @@ function App() {
 
   return (
     <div className="App">
-      <h1>RECIPE APP</h1>
+      <h1 className="main_title">RECIPE APP</h1>
       <Search setSearch={setSearch} updateQuery={updateQuery}/>
-      <Recipe food={food} details={details}/>
+      {loading ? <div className="spinner"><ReactBootStrap.Spinner style={{color: "blue", textAlign: "center"}} animation="border" /></div> : 
+        <Recipe food={food} details={details}/>
+      }
     </div>
   );
 }

@@ -1,38 +1,82 @@
-.App {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/*Title*/
+.main_title {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*Search*/
+.search_wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+.search_wrapper input {
+  padding: 8px 12px;
+  font-size: 17px;
+  margin-right: 5px;
+  border: 2px solid gray;
+}
+.search_wrapper input:focus {
+  outline: none;
+}
+.search_wrapper button {
+  padding: 8px 12px;
+  font-size: 17px;
+  border: none;
+  background-color: gray;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+
+/*Recipe container*/
+.recipe_container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.recipe_container .spinner {
+  text-align: center;
+  border: 1px solid black;
+}
+.recipe_container .recipe_item {
+  box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.35);
+  margin: 20px;
+}
+.recipe_container .recipe_item .recipe_title {
+  text-align: center;
+  padding: 10px 0px;
+}
+.recipe_container .recipe_item .recipe_image {
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.recipe_container .recipe_item .recipe_info {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.recipe_container .recipe_item .recipe_info .recipe_Kcal {
+  font-weight: bold;
+  font-size: 18px;
+  color: gray;
+}
+.recipe_container .recipe_item .recipe_info .ingradients {
+  padding: 8px 12px;
+  font-size: 18px;
+  background-color: gray;
+  border: none;
+  outline: none;
+  color: white;
+}
+.recipe_container .recipe_item .recipe_info .ingradients:hover {
+  background-color: rgb(107, 107, 107);
+}
+.spinner {
+  text-align: center;
+  padding: 60px 0px;
 }
