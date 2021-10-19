@@ -4,6 +4,10 @@ import Recipe from "./components/Recipe";
 import Search from "./components/Search";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import Ingredients from "./components/Ingredients";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
 
@@ -14,6 +18,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("pizza");
   const [loading, setLoading] = useState(true);
+  const [details, setDetails] = useState([]);
 
 
   const fetchFood = useCallback( async () => {
@@ -37,19 +42,30 @@ function App() {
       setQuery(search);
   }
 
-  const details = (foody) => {
+  const viewItem = (foody) => {
     const filtered = food.filter(item => item.recipe.label.toLowerCase() === foody.toLowerCase());
     console.log(filtered);
+    setDetails(filtered);
   }
 
   return (
-    <div className="App">
-      <h1 className="main_title">RECIPE APP</h1>
-      <Search setSearch={setSearch} updateQuery={updateQuery}/>
-      {loading ? <div className="spinner"><ReactBootStrap.Spinner style={{color: "blue", textAlign: "center"}} animation="border" /></div> : 
-        <Recipe food={food} details={details}/>
-      }
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route path="/" exact>
+            <Search setSearch={setSearch} updateQuery={updateQuery}/>
+            {loading ? <div className="spinner"><ReactBootStrap.Spinner style={{color: "blue", textAlign: "center"}} animation="border" /></div> : 
+              <Recipe food={food} viewItem={viewItem}/>
+            }
+          </Route>
+          <Route path="/ingredients">
+            <Ingredients details={details}/>
+          </Route>
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
