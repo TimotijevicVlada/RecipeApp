@@ -8,7 +8,7 @@
 .navbar {
   border-bottom: 2px solid gray;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin-bottom: 20px;
 }
 .navbar .logo {
@@ -206,6 +206,43 @@
   font-weight: bold;
 }
 
+/*Favorite*/
+.favorite_container {
+  min-height: 90vh;
+}
+.favorite_container .favorite_empty {
+  text-align: center;
+  padding: 20px 0px;
+} 
+.favorite_container .favorite_item {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+.favorite_container .favorite_item  div {
+  width: 20%;
+}
+.favorite_container .favorite_item  .name {
+  font-size: 25px;
+}
+.favorite_container .favorite_item .kcal {
+  font-weight: bold;
+}
+.favorite_container .favorite_item .image {
+  margin: 10px 10px 10px 30px;
+}
+.favorite_container .favorite_item .image img {
+  width: 150px;
+  border-radius: 5px;
+}
+
+.favorite_container .favorite_item .ingredients div .ingr {
+  font-size: 12px;
+}
+.favorite_container .favorite_item .trash .fas {
+  font-size: 30px;
+}
 
 /*Footer*/
 .footer {
@@ -214,4 +251,12 @@
   padding: 20px 0px;
   margin-top: 20px;
   border-top: 2px solid gray;
+}
+
+
+
+@media screen and (max-width: 720px) {
+  .details_info {
+    flex-direction: column;
+  }
 }

@@ -17,7 +17,7 @@ const Ingredients = ({ details, setFavorite, favorite, setTotalFav }) => {
   return (
     <div className="details_container">
       {details.map((item) => (
-        <div className="details_wrapper" key={item.recipe.calories}>
+        <div className="details_wrapper" key={item.recipe.label}>
           <div className="details_title">
             <h2>{item.recipe.label}</h2>
           </div>
