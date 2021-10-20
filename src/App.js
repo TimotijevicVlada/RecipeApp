@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Ingredients from "./components/Ingredients";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Favorite from "./components/Favorite";
 
 function App() {
 
@@ -16,9 +17,13 @@ function App() {
 
   const [food, setFood] = useState("");
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("pizza");
+  const [query, setQuery] = useState("chicken");
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState([]);
+  const [favorite, setFavorite] = useState([]);
+  const [totalFav, setTotalFav] = useState(0);
+
+
 
 
   const fetchFood = useCallback( async () => {
@@ -44,14 +49,15 @@ function App() {
 
   const viewItem = (foody) => {
     const filtered = food.filter(item => item.recipe.label.toLowerCase() === foody.toLowerCase());
-    console.log(filtered);
     setDetails(filtered);
   }
+
+  
 
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <Navbar totalFav={totalFav}/>
         <Switch>
           <Route path="/" exact>
             <Search setSearch={setSearch} updateQuery={updateQuery}/>
@@ -60,7 +66,10 @@ function App() {
             }
           </Route>
           <Route path="/ingredients">
-            <Ingredients details={details}/>
+            <Ingredients details={details} setFavorite={setFavorite} favorite={favorite} setTotalFav={setTotalFav}/>
+          </Route>
+          <Route path="/favorites">
+            <Favorite favorite={favorite}/>
           </Route>
         </Switch>
         <Footer />
