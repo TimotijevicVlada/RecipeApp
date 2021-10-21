@@ -52,6 +52,19 @@ function App() {
     setDetails(filtered);
   }
 
+  const deleteItem = (id) => {
+    const deleted = favorite.filter(item => item.id !== id);
+    setFavorite(deleted);
+  }
+
+  const displayTotalFavNum = useCallback( () => {
+    setTotalFav(favorite.length);
+  }, [favorite])
+  
+  useEffect(() => {
+    displayTotalFavNum();
+  }, [displayTotalFavNum])
+
   
 
   return (
@@ -69,7 +82,7 @@ function App() {
             <Ingredients details={details} setFavorite={setFavorite} favorite={favorite} setTotalFav={setTotalFav}/>
           </Route>
           <Route path="/favorites">
-            <Favorite favorite={favorite}/>
+            <Favorite favorite={favorite} deleteItem={deleteItem}/>
           </Route>
         </Switch>
         <Footer />
