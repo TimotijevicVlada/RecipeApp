@@ -17,7 +17,7 @@ function App() {
 
   const [food, setFood] = useState("");
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("chicken");
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState([]);
   const [favorite, setFavorite] = useState([]);
