@@ -1,16 +1,31 @@
 import React from "react";
 
-const Ingredients = ({ details, setFavorite, favorite, setTotalFav }) => {
-
+const Ingredients = ({ details, setFavorite, favorite, setTotalFav, totalFav }) => {
+  console.log(favorite)
 
   const addToFavorite = (item) => {
+      if(totalFav < 1) {
         const newFav = [
           ...favorite, 
           {id: item.calories, info: item}
         ]
         setFavorite(newFav);
-        console.log(favorite);
-        setTotalFav(newFav.length)
+        setTotalFav(newFav.length);
+      } else {
+        for(let i in favorite) {
+          if(item.label === favorite[i].info.label) {
+            alert("This product is already in the favorite!");
+            return;
+          } else {
+            const newFav = [
+              ...favorite, 
+              {id: item.calories, info: item}
+            ]
+            setFavorite(newFav);
+            setTotalFav(newFav.length);
+          }
+        }
+      }
   }
 
 

@@ -17,7 +17,7 @@ function App() {
 
   const [food, setFood] = useState("");
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("chicken");
+  const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState([]);
   const [favorite, setFavorite] = useState([]);
@@ -79,10 +79,10 @@ function App() {
             }
           </Route>
           <Route path="/ingredients">
-            <Ingredients details={details} setFavorite={setFavorite} favorite={favorite} setTotalFav={setTotalFav}/>
+            <Ingredients details={details} setFavorite={setFavorite} favorite={favorite} setTotalFav={setTotalFav} totalFav={totalFav}/>
           </Route>
           <Route path="/favorites">
-            <Favorite favorite={favorite} deleteItem={deleteItem}/>
+            <Favorite favorite={favorite} deleteItem={deleteItem} viewItem={viewItem}/>
           </Route>
         </Switch>
         <Footer />

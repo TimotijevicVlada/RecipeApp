@@ -4,6 +4,7 @@
   padding: 0;
   font-family: 'poppins', sans-serif;
 }
+
 /*Navbar*/
 .navbar {
   border-bottom: 2px solid gray;
@@ -47,12 +48,22 @@
   display: flex;
   justify-content: center;
 }
+.search_wrapper .search_inner {
+  width: 320px;
+  background-color: white;
+  border: 2px solid gray;
+  border-radius: 25px;
+  overflow: hidden;
+  padding: 3px;
+  display: flex;
+  justify-content: space-between;
+}
 .search_wrapper input {
   padding: 8px 12px;
   font-size: 17px;
   margin-right: 5px;
-  border: 1px solid rgb(161, 161, 161);
   border-radius: 5px;
+  border: none;
 }
 .search_wrapper input:focus {
   outline: none;
@@ -61,18 +72,23 @@
   padding: 8px 12px;
   font-size: 17px;
   border: none;
-  background-color: rgb(209, 209, 209);
+  background-color: white;
   color: white;
   border-radius: 5px;
+  border-radius: 20px;
 }
 .search_wrapper button:hover {
   background-color: gray;
+}
+.search_wrapper button i {
+  color: lightgray;
 }
 
 
 /*Recipe container*/
 .recipe_container {
   width: 100%;
+  min-height: 70vh;
   display: flex;
   flex-wrap: wrap;
 }
@@ -98,25 +114,16 @@
   border-radius: 5px;
 }
 
-.recipe_container .recipe_item .recipe_info {
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.recipe_container .recipe_item .recipe_info .recipe_Kcal {
-  font-weight: bold;
-  font-size: 18px;
-  color: gray;
-}
 .recipe_container .recipe_item .recipe_info .ingradients {
-  padding: 8px 12px;
+  padding: 12px;
   font-size: 18px;
   background-color: rgb(196, 196, 196);
+  width: 100%;
   border: none;
   outline: none;
   color: white;
   border-radius: 5px;
+  margin-top: 8px;
 }
 .recipe_container .recipe_item .recipe_info .ingradients:hover {
   background-color: rgb(107, 107, 107);
@@ -316,6 +323,14 @@
 
 
 @media screen and (max-width: 720px) {
+  /*Navbar*/
+  .navbar .logo {
+    margin-left: 25px;
+  }
+  .navbar .icons {
+    margin-right: 25px;
+  }
+  
   /*Details*/
   .details_container .details_wrapper .details_info {
     padding: 5px;
@@ -344,6 +359,10 @@
     width: 95%;
   }
   .details_container .details_wrapper .details_info .details_desc {
+    width: 100%;
+    padding: 5px;
+  }
+  .details_container .details_wrapper .details_info .details_desc .details_ingr {
     width: 100%;
   }
   
