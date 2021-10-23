@@ -20,7 +20,7 @@ function App() {
   const [query, setQuery] = useState("chicken");
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState([]);
-  const [favorite, setFavorite] = useState(localStorage.getItem("food" === null) ? [] : JSON.parse(localStorage.getItem("food")));
+  const [favorite, setFavorite] = useState(localStorage.getItem("food") === null ? [] : JSON.parse(localStorage.getItem("food")));
   const [totalFav, setTotalFav] = useState(0);
 
 
