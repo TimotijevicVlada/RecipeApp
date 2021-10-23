@@ -20,7 +20,7 @@ function App() {
   const [query, setQuery] = useState("chicken");
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState([]);
-  const [favorite, setFavorite] = useState(JSON.parse(localStorage.getItem("food")) === null ? [] : JSON.parse(localStorage.getItem("food")));
+  const [favorite, setFavorite] = useState([]);
   const [totalFav, setTotalFav] = useState(0);
 
 
@@ -70,6 +70,21 @@ function App() {
     displayTotalFavNum();
   }, [displayTotalFavNum])
 
+  
+  //Function that get local storage info and send to favorite state
+  const getLocaleStorage = () => {
+    if(localStorage.getItem("food") === null) {
+      localStorage.setItem("food", JSON.stringify([]));
+    } else {
+      const favLocalStorage = JSON.parse(localStorage.getItem("food"));
+      setFavorite(favLocalStorage);
+    }
+  }
+
+  useEffect(() => {
+    getLocaleStorage();
+  }, [])
+
 
   //Function that save favorite item to locale storage
   const saveToLocaleStorage = useCallback( () => {
@@ -80,8 +95,7 @@ function App() {
     saveToLocaleStorage();
   }, [saveToLocaleStorage])
 
-
-
+  
   return (
     <Router>
       <div className="App">
