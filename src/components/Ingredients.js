@@ -1,8 +1,9 @@
 import React from "react";
 
 const Ingredients = ({ details, setFavorite, favorite, setTotalFav, totalFav }) => {
-  console.log(favorite)
+  
 
+  //Function to add item to favorite page
   const addToFavorite = (item) => {
       if(totalFav < 1) {
         const newFav = [

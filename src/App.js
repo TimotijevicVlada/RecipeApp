@@ -20,12 +20,13 @@ function App() {
   const [query, setQuery] = useState("chicken");
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState([]);
-  const [favorite, setFavorite] = useState([]);
+  const [favorite, setFavorite] = useState(JSON.parse(localStorage.getItem("food")));
   const [totalFav, setTotalFav] = useState(0);
 
 
 
 
+  //Function that fetch food info from an API
   const fetchFood = useCallback( async () => {
     try {
       const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}`);
@@ -43,20 +44,24 @@ function App() {
     fetchFood();
   }, [fetchFood])
 
+  //Function that update query for fetching specific food
   const updateQuery = () => {
       setQuery(search);
   }
 
+  //Funtion for details page to view clicked item
   const viewItem = (foody) => {
     const filtered = food.filter(item => item.recipe.label.toLowerCase() === foody.toLowerCase());
     setDetails(filtered);
   }
 
+  //Function that delete clicked item in favorite page
   const deleteItem = (id) => {
     const deleted = favorite.filter(item => item.id !== id);
     setFavorite(deleted);
   }
 
+  //Function that display total favorite number in the navbar
   const displayTotalFavNum = useCallback( () => {
     setTotalFav(favorite.length);
   }, [favorite])
@@ -65,7 +70,17 @@ function App() {
     displayTotalFavNum();
   }, [displayTotalFavNum])
 
-  
+
+  //Function that save favorite item to locale storage
+  const saveToLocaleStorage = useCallback( () => {
+    localStorage.setItem("food", JSON.stringify(favorite));
+  }, [favorite])
+
+  useEffect(() => {
+    saveToLocaleStorage();
+  }, [saveToLocaleStorage])
+
+
 
   return (
     <Router>
