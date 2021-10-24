@@ -23,9 +23,6 @@ function App() {
   const [favorite, setFavorite] = useState([]);
   const [totalFav, setTotalFav] = useState(0);
 
-
-
-
   //Function that fetch food info from an API
   const fetchFood = useCallback( async () => {
     try {
@@ -95,6 +92,28 @@ function App() {
     saveToLocaleStorage();
   }, [saveToLocaleStorage])
 
+  //Function that get details info from storage
+  const getDetailsStorage = () => {
+    if(localStorage.getItem("details") === null) {
+      localStorage.setItem("details", JSON.stringify([]));
+    } else {
+      const detailsStorage = JSON.parse(localStorage.getItem("details"));
+      setDetails(detailsStorage);
+    }
+  }
+
+  useEffect(() => {
+    getDetailsStorage();
+  }, [])
+
+  //Function that set the details storage
+  const saveDetailsStorage = useCallback( () => {
+    localStorage.setItem("details", JSON.stringify(details));
+  }, [details])
+
+  useEffect(() => {
+    saveDetailsStorage();
+  }, [saveDetailsStorage])
   
   return (
     <Router>
